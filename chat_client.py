@@ -6,6 +6,8 @@ def receive():
     while True:
         try:
             msg = client_socket.recv(BUFSIZ).decode("utf8")
+            if msg == 'disconnect':
+                client_socket.close()
             print(msg)
         except OSError:
             break
@@ -26,7 +28,6 @@ def establish_connection():
         else:
             PORT = int(PORT)
 
-
         ADDR = (HOST, PORT)
 
         global client_socket
@@ -38,7 +39,7 @@ def establish_connection():
 
     except ConnectionRefusedError:
         print("The server you are trying to connect to is currently unavailable. "
-                "Please recheck your host and port, or try again later.")
+              "Please recheck your host and port, or try again later.")
         establish_connection()
 
 
@@ -51,6 +52,7 @@ def send(event=None):
             client_socket.close()
     except OSError:
         print("You are now disconnected. Please restart the app to join another server")
+
 
 BUFSIZ = 1024
 establish_connection()
