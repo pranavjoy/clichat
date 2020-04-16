@@ -20,6 +20,7 @@ def handle_commands(command):
 def handle_client(client):
     global clients
     client_names = ""
+    count = 3
     try:
         name = client.recv(BUFSIZ).decode("utf8")
         if name == 'admin':
@@ -46,6 +47,10 @@ def handle_client(client):
                          except:
                              error_message = "Please provide a client address or name to kick out"
                              client.send(bytes(error_message, "utf8"))
+            else:
+                error_message = "Incorrect password."
+                client.send(bytes(error_message, "utf8"))
+                client.send(bytes("disconnect", "utf8"))
         else:
             welcome = 'Welcome %s! If you ever want to quit, type {quit} to exit.' % name
             client.send(bytes(welcome, "utf8"))

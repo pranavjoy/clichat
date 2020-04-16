@@ -1,6 +1,13 @@
 from socket import AF_INET, socket, SOCK_STREAM
 from threading import Thread
 
+servers = {
+    "asia": "35.198.233.187",
+    "europe": "35.189.251.210",
+    "america": "35.222.202.92",
+    "oceania": "34.87.244.242"
+}
+
 
 def receive():
     while True:
@@ -8,16 +15,19 @@ def receive():
             msg = client_socket.recv(BUFSIZ).decode("utf8")
             if msg == 'disconnect':
                 client_socket.close()
-            print(msg)
+            else:
+                print(msg)
         except OSError:
             break
 
 
 def establish_connection():
     try:
-        HOST = input('Enter host: ')
-        PORT = input('Enter port: ')
+        print("Welcome! Choose between america, europe, asia and oceania servers")
+        SERVER = input('Enter server name: ')
+        PORT = 33000
 
+        HOST = servers[SERVER]
         if not HOST:
             HOST = 'localhost'
         else:
@@ -56,6 +66,5 @@ def send(event=None):
 
 BUFSIZ = 1024
 establish_connection()
-
 while True:
     send()
