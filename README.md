@@ -2,7 +2,7 @@
 
 Clone the repo and run chat_client.py using the command,  
 
-```cd clichat/  ```
+```cd clichat/  \n```
 ```python3 chat_client.py```
 
 When prompted choose a server between Asia, Europe, America or Oceania. If no server is chosen, the American server will be chosen by default
