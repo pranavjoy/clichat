@@ -23,21 +23,14 @@ def receive():
 
 def establish_connection():
     try:
-        print("Welcome! Choose between america, europe, asia and oceania servers")
-        SERVER = input('Enter server name: ')
+        print("Welcome! Choose between AMERICA, EUROPE, ASIA and OCEANIA servers")
         PORT = 33000
+        SERVER = input('Enter server name: ').lower()
+        if SERVER != 'asia' and SERVER != 'europe' and SERVER != 'america' and SERVER != 'oceania':
+            print("You have entered an invalid server name. You have now been assigner the AMERICA server by default")
+            SERVER = 'america'
 
         HOST = servers[SERVER]
-        if not HOST:
-            HOST = 'localhost'
-        else:
-            HOST = str(HOST)
-
-        if not PORT:
-            PORT = 33000
-        else:
-            PORT = int(PORT)
-
         ADDR = (HOST, PORT)
 
         global client_socket
