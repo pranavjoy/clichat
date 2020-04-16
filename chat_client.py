@@ -27,7 +27,7 @@ def establish_connection():
         PORT = 33000
         SERVER = input('Enter server name: ').lower()
         if SERVER != 'asia' and SERVER != 'europe' and SERVER != 'america' and SERVER != 'oceania':
-            print("You have entered an invalid server name. You have now been assigner the AMERICA server by default")
+            print("You have entered an invalid server name. You have now been assigned the AMERICA server by default")
             SERVER = 'america'
 
         HOST = servers[SERVER]
